@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Hangfire.Core</id>
+    <version>0.0.0</version>
+    <title>Hangfire Core Components</title>
+    <authors>Sergey Odinokov</authors>
+    <owners>odinserj</owners>
+    <projectUrl>https://www.hangfire.io/</projectUrl>
+    <repository type="git" url="https://github.com/HangfireIO/Hangfire.git" />
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://raw.github.com/HangfireIO/Hangfire/master/LICENSE.md</licenseUrl>
+    <summary>An easy way to perform fire-and-forget, delayed and recurring tasks inside ASP.NET applications. No Windows Service required.</summary>
+    <description>
+An easy and reliable way to perform fire-and-forget, delayed and recurring, long-running, short-running, CPU or I/O intensive tasks inside ASP.NET applications. No Windows Service / Task Scheduler required. Even ASP.NET is not required.
+Backed by Redis, SQL Server, SQL Azure or MSMQ. This is a .NET alternative to Sidekiq, Resque and Celery.
+https://www.hangfire.io/
+    </description>
+    <copyright>Copyright © 2013-2023 Hangfire OÜ</copyright>
+    <tags>Hangfire OWIN Long-Running Background Fire-And-Forget Delayed Recurring Tasks Jobs Scheduler Threading Queues</tags>
+    <releaseNotes>https://www.hangfire.io/blog/
+
+Please see https://docs.hangfire.io/en/latest/upgrade-guides/upgrading-to-hangfire-1.7.html to learn how to upgrade from 1.6.X.
+
+1.7.37
+• Fixed – Recurring job is scheduled to the past after recovering from error with `AddOrUpdate` (backported).
+• Fixed – `AddOrUpdate` triggers execution of a recurring job, even if its next execution is in the future (backported).
+• Fixed – Send heartbeats until full background processing server shutdown (backported).
+
+1.7.36
+• Fixed – Remove job id from schedule when it's not in the Scheduled state for some reason.
+
+1.7.34
+• Added – Add reschedule functionality to `BackgroundJob` and `IBackgroundJobClient` (by @chrischu).
+• Fixed – `ArgumentNullException` with tricky generic type with inheritance case for jobs.
+• Fixed – Display "Aborted servers will be removed…" note only once aborted threshold passed.
+
+1.7.32
+• Added – First version of Swedish translation of the Dashboard UI (by @karl-sjogren).
+• Changed – More detailed message for exception when `JobStorage.Current` is not initialized.
+• Changed – Make `TypeHelperSerializationBinder` class public to use it from custom serializer settings.
+• Fixed – Small typos in French resources for the Dashboard UI (by @agriffard).
+• Fixed – Document the exception for the `IJobCancellationToken` interface method (by @judah4).
+
+1.7.31
+• Added – `RecurringJob.TriggerJob` method that returns identifier of a triggered background job.
+• Added – `RecurringJobManager.TriggerJob` as a replacement for the `TriggerExecution` method.
+• Changed – Update Moment.js library used by Dashboard UI to version 2.29.4 (by @mmitchell-w).
+• Fixed – Typos in pt-BR translation (by @gumbarros and @marcelcamargo).
+• Fixed – Added missing parameter annotations for methods of the `RecurringJob` class.
+• Deprecated – `RecurringJob.Trigger` method is now obsolete, `TriggerJob` is the replacement.
+• Deprecated – `RecurringJobManager.TriggerExecution` method is now obsolete, `TriggerJob` should be used instead.
+
+1.7.30
+• Fixed – Don't consider `SecurityException` as a non-catchable one.
+• Fixed – Replace timer with a dedicated thread in `AspNetShutdownDetector` to avoid depending on thread pool.
+• Fixed – Better ASP.NET shutdown detection with yet another check based on internal state.
+• Fixed – Decrease `AspNetShutdownDetector`'s check intervals to detect shutdowns earlier.
+• Fixed – Don't wait for server stop on AppDomain unloads when hosting in IIS to avoid delaying them.
+    </releaseNotes>
+    <dependencies>
+      <group targetFramework="net45">
+        <dependency id="Owin" version="1.0" />
+        <dependency id="Newtonsoft.Json" version="5.0.1" />
+      </group>
+      <group targetFramework="net46">
+        <dependency id="Owin" version="1.0" />
+        <dependency id="Newtonsoft.Json" version="5.0.1" />
+      </group>
+      <group targetFramework="netstandard1.3">
+        <dependency id="NETStandard.Library" version="1.6.0" />
+        <dependency id="System.Threading.Thread" version="4.0.0" />
+        <dependency id="System.Threading.ThreadPool" version="4.0.10" />
+        <dependency id="Newtonsoft.Json" version="9.0.1" />
+      </group>
+      <group targetFramework="netstandard2.0">
+        <dependency id="Newtonsoft.Json" version="11.0.1" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="net45\Hangfire.Core.dll" target="lib\net45" />
+    <file src="net45\Hangfire.Core.xml" target="lib\net45" />
+    <file src="net45\Hangfire.Core.pdb" target="lib\net45" />
+
+    <file src="net45\**\Hangfire.Core.resources.dll" target="lib\net45" />
+
+    <file src="net46\Hangfire.Core.dll" target="lib\net46" />
+    <file src="net46\Hangfire.Core.xml" target="lib\net46" />
+    <file src="net46\Hangfire.Core.pdb" target="lib\net46" />
+
+    <file src="net46\**\Hangfire.Core.resources.dll" target="lib\net46" />
+    
+    <file src="netstandard1.3\Hangfire.Core.dll" target="lib\netstandard1.3" />
+    <file src="netstandard1.3\Hangfire.Core.xml" target="lib\netstandard1.3" />
+    <file src="netstandard1.3\Hangfire.Core.pdb" target="lib\netstandard1.3" />
+
+    <file src="netstandard1.3\**\Hangfire.Core.resources.dll" target="lib\netstandard1.3" />
+
+    <file src="netstandard2.0\Hangfire.Core.dll" target="lib\netstandard2.0" />
+    <file src="netstandard2.0\Hangfire.Core.xml" target="lib\netstandard2.0" />
+    <file src="netstandard2.0\Hangfire.Core.pdb" target="lib\netstandard2.0" />
+
+    <file src="netstandard2.0\**\Hangfire.Core.resources.dll" target="lib\netstandard2.0" />
+    
+    <file src="..\src\Hangfire.Core\**\*.cs;..\src\Hangfire.Core\**\*.cshtml" target="src" exclude="**\obj*\**\*.cs" />
+
+    <file src="LICENSE.md" />
+    <file src="COPYING" />
+    <file src="COPYING.LESSER" />
+    <file src="NOTICES" />
+    <file src="LICENSE_STANDARD" />
+    <file src="LICENSE_ROYALTYFREE" />
+  </files>
+</package>

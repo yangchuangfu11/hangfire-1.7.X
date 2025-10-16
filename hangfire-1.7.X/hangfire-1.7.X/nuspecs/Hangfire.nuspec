@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Hangfire</id>
+    <version>0.0.0</version>
+    <title>Hangfire</title>
+    <authors>Sergey Odinokov</authors>
+    <owners>odinserj</owners>
+    <projectUrl>https://www.hangfire.io/</projectUrl>
+    <repository type="git" url="https://github.com/HangfireIO/Hangfire.git" />
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://raw.github.com/HangfireIO/Hangfire/master/LICENSE.md</licenseUrl>
+    <summary>An easy way to perform fire-and-forget, delayed and recurring tasks inside ASP.NET applications. No Windows Service required.</summary>
+    <description>
+An easy and reliable way to perform fire-and-forget, delayed and recurring, long-running, short-running, CPU or I/O intensive tasks inside ASP.NET applications. No Windows Service / Task Scheduler required. Even ASP.NET is not required.
+Backed by Redis, SQL Server, SQL Azure or MSMQ. This is a .NET alternative to Sidekiq, Resque and Celery.
+https://www.hangfire.io/
+    </description>
+    <copyright>Copyright © 2013-2023 Hangfire OÜ</copyright>
+    <tags>Hangfire AspNet MVC AspNetCore SqlServer Long-Running Background Fire-And-Forget Delayed Recurring Tasks Jobs Scheduler Threading Queues</tags>
+    <releaseNotes>https://www.hangfire.io/blog/
+
+Please see https://docs.hangfire.io/en/latest/upgrade-guides/upgrading-to-hangfire-1.7.html to learn how to upgrade from 1.6.X.
+
+1.7.37
+
+Hangfire.Core
+
+• Fixed – Recurring job is scheduled to the past after recovering from error with `AddOrUpdate` (backported).
+• Fixed – `AddOrUpdate` triggers execution of a recurring job, even if its next execution is in the future (backported).
+• Fixed – Send heartbeats until full background processing server shutdown (backported).
+
+1.7.36
+
+Hangfire.Core
+
+• Fixed – Remove job id from schedule when it's not in the Scheduled state for some reason.
+
+Hangfire.NetCore and Hangfire.AspNetCore
+
+• Changed – Set processing server to `null` in hosted service to avoid `ObjectDisposedException`.
+
+1.7.35
+
+Hangfire.SqlServer
+
+• Fixed – Blocked workers regression since 1.7.33 when using multiple servers inside a process.
+
+1.7.34
+
+Hangfire.Core
+
+• Added – Add reschedule functionality to `BackgroundJob` and `IBackgroundJobClient` (by @chrischu).
+• Fixed – `ArgumentNullException` with tricky generic type with inheritance case for jobs.
+• Fixed – Display "Aborted servers will be removed…" note only once aborted threshold passed.
+
+1.7.33
+
+Hangfire.SqlServer
+
+• Changed – Use SQL Server as a time authority for server heartbeats.
+• Changed – Increase `MinPollingDelayMs` for SQL Server to 100 milliseconds.
+• Changed – Don't wait on SQL Server's side when using long polling for fetching.
+
+Hangfire.AspNetCore
+
+• Fixed – Implement support `IAsyncDisposable` for `IServiceScope` instances for newer .NET platforms.
+
+1.7.32
+
+Hangfire.Core
+      
+• Added – First version of Swedish translation of the Dashboard UI (by @karl-sjogren).
+• Changed – More detailed message for exception when `JobStorage.Current` is not initialized.
+• Changed – Make `TypeHelperSerializationBinder` class public to use it from custom serializer settings.
+• Fixed – Small typos in French resources for the Dashboard UI (by @agriffard).
+• Fixed – Document the exception for the `IJobCancellationToken` interface method (by @judah4).
+
+Hangfire.NetCore and Hangfire.AspNetCore
+
+• Changed – Wait for application to be ready before starting the server when using `AddHangfireServer`.
+• Fixed – Do not return `null` as result of `StopAsync` in hosted service implementation (by @tomaszek92).
+
+1.7.31
+
+Hangfire.Core
+
+• Added – `RecurringJob.TriggerJob` method that returns identifier of a triggered background job.
+• Added – `RecurringJobManager.TriggerJob` as a replacement for the `TriggerExecution` method.
+• Changed – Update Moment.js library used by Dashboard UI to version 2.29.4 (by @mmitchell-w).
+• Fixed – Typos in pt-BR translation (by @gumbarros and @marcelcamargo).
+• Fixed – Added missing parameter annotations for methods of the `RecurringJob` class.
+• Deprecated – `RecurringJob.Trigger` method is now obsolete, `TriggerJob` is the replacement.
+• Deprecated – `RecurringJobManager.TriggerExecution` method is now obsolete, `TriggerJob` should be used instead.
+
+1.7.30
+
+Hangfire.Core
+
+• Fixed – Don't consider `SecurityException` as a non-catchable one.
+• Fixed – Replace timer with a dedicated thread in `AspNetShutdownDetector` to avoid depending on thread pool.
+• Fixed – Better ASP.NET shutdown detection with yet another check based on internal state.
+• Fixed – Decrease `AspNetShutdownDetector`'s check intervals to detect shutdowns earlier.
+• Fixed – Don't wait for server stop on AppDomain unloads when hosting in IIS to avoid delaying them.
+    </releaseNotes>
+    <dependencies>
+      <group targetFramework="net45">
+        <dependency id="Hangfire.Core" version="[0.0.0]" />
+        <dependency id="Hangfire.SqlServer" version="[0.0.0]" />
+        <dependency id="Microsoft.Owin.Host.SystemWeb" version="3.0.0" />
+      </group>
+      <group targetFramework="netstandard1.3">
+        <dependency id="Hangfire.Core" version="[0.0.0]" />
+        <dependency id="Hangfire.SqlServer" version="[0.0.0]" />
+        <dependency id="Hangfire.AspNetCore" version="[0.0.0]" />
+      </group>
+      <group targetFramework="netstandard2.0">
+        <dependency id="Hangfire.Core" version="[0.0.0]" />
+        <dependency id="Hangfire.SqlServer" version="[0.0.0]" />
+        <dependency id="Hangfire.AspNetCore" version="[0.0.0]" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="Content\readme.txt" target="readme.txt" />
+  </files>
+</package>
